@@ -106,3 +106,4 @@ function draw() {
       fireArr[i].eat();
    }
 }
+console.log("aaaaaa")
