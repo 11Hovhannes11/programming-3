@@ -1,7 +1,7 @@
 var matrix = [];
-var n = 24*1.5
-var m = 36*1.5
-var side = 20;   
+var n = 24 * 1.5
+var m = 36 * 1.5
+var side = 20;
 var grassArr = [];
 var grassEaterArr = [];
 var predatorArr = [];
@@ -11,23 +11,21 @@ for (let i = 0; i < n; i++) {
    matrix.push([]);
    for (let j = 0; j < m; j++) {
       matrix[i].push(0);
-   }   
+   }
 }
-
-function characters(index,count) {
+function characters(index, count) {
    for (let a = 0; a < count; a++) {
-      var v = Math.floor(random(0,n))
-      var w = Math.floor(random(0,m))
+      var v = Math.floor(random(0, n))
+      var w = Math.floor(random(0, m))
       matrix[v][w] = index
    }
 }
-
-
 function setup() {
-   characters(1,250)
-   characters(2,150)
-   characters(3,100)
-   characters(4,10)
+   characters(1, 250)
+   characters(2, 150)
+   characters(3, 100)
+   characters(4, 10)
+   characters(5, 10)
    frameRate(5);
    createCanvas(matrix[0].length * side, matrix.length * side);
    background('#acacac');
@@ -57,7 +55,6 @@ function setup() {
    }
 
 }
-
 function draw() {
 
    for (var y = 0; y < matrix.length; y++) {
@@ -84,12 +81,11 @@ function draw() {
             rect(x * side, y * side, side, side);
          }
          else if (matrix[y][x] == 5) {
-            fill("rgb(255, 0, 0)");
+            fill("red");
             rect(x * side, y * side, side, side);
          }
       }
    }
-
    for (var i in grassArr) {
       grassArr[i].mul();
    }
@@ -106,4 +102,3 @@ function draw() {
       fireArr[i].eat();
    }
 }
-console.log("aaaaaa")

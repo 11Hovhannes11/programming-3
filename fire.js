@@ -1,12 +1,8 @@
-class Fire {
+class Fire extends LivingCreature {
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
+        super(x, y, index);
         this.energy = 16;
-        this.index = index;
-        this.directions = [];
     }
-
     getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],
@@ -20,21 +16,8 @@ class Fire {
         ];
     }
     chooseCell(character, character1, character2, character3) {
-        this.getNewCoordinates()
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-
-                if (matrix[y][x] == character || matrix[y][x] == character1 || matrix[y][x] == character2 || matrix[y][x] == character3) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
-
+        this.getNewCoordinates();
+        return super.chooseCell(character);
     }
     mul() {
 
@@ -75,11 +58,11 @@ class Fire {
                     break;
                 }
             }
-                for (var r in hunterArr) {
-                    if (newX == hunterArr[r].x && newY == hunterArr[r].y) {
-                        hunterArr.splice(r, 1);
-                        break;
-                    }
+            for (var r in hunterArr) {
+                if (newX == hunterArr[r].x && newY == hunterArr[r].y) {
+                    hunterArr.splice(r, 1);
+                    break;
+                }
             }
             if (this.energy >= 10) {
                 this.mul()
@@ -89,7 +72,6 @@ class Fire {
             this.move()
         }
     }
-
     move() {
         this.energy--;
         let emptyCells = this.chooseCell(0)
@@ -102,7 +84,6 @@ class Fire {
             this.x = newX
             this.y = newY
         }
-
         if (this.energy <= 0) {
             this.die()
         }
