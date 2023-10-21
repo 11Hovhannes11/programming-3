@@ -16,6 +16,7 @@ let GrassEater = require('./ge')
 let Predator = require('./prd')
 let Hunter = require('./hnt')
 let Fire = require('./fire')
+let Fireman = require('./fman')
 
 matrix = [];
 grassArr = [];
@@ -23,6 +24,7 @@ grassEaterArr = [];
 predatorArr = [];
 hunterArr = [];
 fireArr = [];
+firemanArr = [];
 var n = 20
 var m = 20
 
@@ -43,11 +45,12 @@ function createGame() {
       }
    }
    characters(1, 100)
-   characters(2, 300)
-   characters(3, 10)
-   characters(4, 5)
-   console.log(matrix);
-   
+   characters(2, 50)
+   characters(3, 20)
+   characters(4, 10)
+   characters(5, 1)
+   characters(6, 3)
+
    for (var y = 0; y < matrix.length; ++y) {
       for (var x = 0; x < matrix[y].length; ++x) {
          if (matrix[y][x] == 1) {
@@ -69,6 +72,12 @@ function createGame() {
          else if (matrix[y][x] == 5) {
             var fir = new Fire(x, y, 1);
             fireArr.push(fir);
+
+         }
+         else if (matrix[y][x] == 6) {
+            var frm = new Fireman(x, y, 1);
+            firemanArr.push(frm);
+
          }
       }
    }
@@ -91,6 +100,9 @@ function drawGame() {
    for (var i in fireArr) {
       fireArr[i].eat();
    }
+   for (var i in firemanArr) {
+      firemanArr[i].eat();
+   }
    io.emit("matrix", matrix)
 }
 
@@ -104,9 +116,13 @@ function startGame() {
    intervalID = setInterval(() => {
       drawGame()
    }, 200)
-}
 
+   season = setInterval(() => {
+
+   }, 100)
+}
 io.on("connection", (socket) => {
    socket.emit("matrix", matrix)
    startGame()
 })
+

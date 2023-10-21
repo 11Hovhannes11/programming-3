@@ -38,10 +38,15 @@ function drawful(matrix) {
          else if (matrix[y][x] == 5) {
             fill("red");
             rect(x * side, y * side, side, side);
+            
+         }
+         else if (matrix[y][x] == 6) {
+            fill("rgb(255, 219, 151)");
+            rect(x * side, y * side, side, side);
+            
          }
       }
    }
 
 }
-
 socket.on("matrix", drawful)

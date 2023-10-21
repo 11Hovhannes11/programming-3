@@ -3,7 +3,7 @@ let random = require("./random");
 module.exports = class Hunter extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index);
-        this.energy = 8;
+        this.energy = 50;
     }
     getNewCoordinates() {
         this.directions = [
@@ -53,7 +53,7 @@ module.exports = class Hunter extends LivingCreature {
                 }
             }
             if (this.energy >= 61) {
-                this.mul()
+         
             }
         }
         else {

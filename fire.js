@@ -3,7 +3,7 @@ let random = require("./random");
 module.exports = class Fire extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index);
-        this.energy = 16;
+        this.energy = 10;
     }
     getNewCoordinates() {
         this.directions = [
