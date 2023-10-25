@@ -11,7 +11,7 @@ function setup() {
 }
 var obj0 = {
    grass: "rgb(157, 227, 0)",
-   grasseater: "yellow",//
+   grasseater: "yellow",//abc
    predator: "rgb(128, 66, 0)",
    hunter: "rgb(91, 68, 50)",
    fire: "red",
