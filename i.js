@@ -25,8 +25,8 @@ predatorArr = [];
 hunterArr = [];
 fireArr = [];
 firemanArr = [];
-var n = 20
-var m = 20
+var n = 30
+var m = 30
 
 for (let i = 0; i < n; i++) {
    matrix.push([]);
@@ -47,8 +47,8 @@ function createGame() {
    characters(1, 100)
    characters(2, 50)
    characters(3, 20)
-   characters(4, 10)
-   characters(5, 1)
+   characters(4, 5)
+   characters(5, 2)
    characters(6, 3)
 
    for (var y = 0; y < matrix.length; ++y) {
@@ -115,11 +115,7 @@ function startGame() {
    createGame()
    intervalID = setInterval(() => {
       drawGame()
-   }, 200)
-
-   season = setInterval(() => {
-
-   }, 100)
+   }, 250)
 }
 io.on("connection", (socket) => {
    socket.emit("matrix", matrix)
