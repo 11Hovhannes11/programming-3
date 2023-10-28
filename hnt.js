@@ -22,7 +22,7 @@ module.exports = class Hunter extends LivingCreature {
         return super.chooseCell(character);
     }
     mul() {
-        var newCell = random(this.chooseCell(1 || 2 || 3 || 4));
+        var newCell = random(this.chooseCell(1 || 2 || 3 ));
         if (newCell) {
             var newFireE = new Fire(newCell[0], newCell[1], this.index);
             fireArr.push(newFireE);

@@ -27,6 +27,8 @@ fireArr = [];
 firemanArr = [];
 var n = 30
 var m = 30
+pause = false;
+
 
 for (let i = 0; i < n; i++) {
    matrix.push([]);
@@ -83,27 +85,29 @@ function createGame() {
    }
 }
 
-
 function drawGame() {
-   for (var i in grassArr) {
-      grassArr[i].mul();
+   if(!pause){
+     
+      for (var i in grassArr) {
+         grassArr[i].mul();
+      }
+      for (var i in grassEaterArr) {
+         grassEaterArr[i].eat();
+      }
+      for (var i in predatorArr) {
+         predatorArr[i].eat();
+      }
+      for (var i in hunterArr) {
+         hunterArr[i].eat();
+      }
+      for (var i in fireArr) {
+         fireArr[i].eat();
+      }
+      for (var i in firemanArr) {
+         firemanArr[i].eat();
+      }
+      io.emit("matrix", matrix)
    }
-   for (var i in grassEaterArr) {
-      grassEaterArr[i].eat();
-   }
-   for (var i in predatorArr) {
-      predatorArr[i].eat();
-   }
-   for (var i in hunterArr) {
-      hunterArr[i].eat();
-   }
-   for (var i in fireArr) {
-      fireArr[i].eat();
-   }
-   for (var i in firemanArr) {
-      firemanArr[i].eat();
-   }
-   io.emit("matrix", matrix)
 }
 
 createGame()
@@ -118,7 +122,15 @@ function startGame() {
    }, 250)
 }
 io.on("connection", (socket) => {
-   socket.emit("matrix", matrix)
    startGame()
+   socket.on("pause", pauseFun)
+   socket.on("run", runFunc)
 })
 
+function pauseFun(kill) {
+   pause = kill;
+}
+
+function runFunc(flag) {
+   pause = flag;
+}

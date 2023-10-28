@@ -3,7 +3,7 @@ let random = require("./random");
 module.exports = class Predator extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index);
-        this.energy = 12;
+        this.energy = 25;
     }
     getNewCoordinates() {
         this.directions = [
